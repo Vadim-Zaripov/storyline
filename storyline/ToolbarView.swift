@@ -30,7 +30,7 @@ class ToolbarView: UIView{
     
     var pd: CGFloat = 0
     
-    init(width: CGFloat, small_height: CGFloat, full_height: CGFloat, title: String? = nil, subtitle: String? = nil, subtext: String? = nil, min_margin: CGFloat = 0){
+    init(width: CGFloat, small_height: CGFloat, full_height: CGFloat, title: String? = nil, subtitle: String? = nil, subtext: String? = nil, min_margin: CGFloat = 0, image: UIImage){
         super.init(frame: CGRect.zero)
         if(width == 0){return}
         
@@ -41,7 +41,7 @@ class ToolbarView: UIView{
         self.clipsToBounds = true
         
         let imageView: UIImageView = {
-            let view = UIImageView(image: resizeImage(image: UIImage(named: "bg")!, targetSize: CGSize(width: width, height: self.full_height)))
+            let view = UIImageView(image: resizeImage(image: image, targetSize: CGSize(width: width, height: self.full_height)))
             view.contentMode = .bottom
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
