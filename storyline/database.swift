@@ -8,24 +8,39 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 var database: Firestore!
 
-func loadBook(withIdentifier id: String, completion: ((Book?) -> Void)?){
+func loadBook(withIdentifier id: String, localURL: URL, completion: ((Book?) -> Void)?){
     database = Firestore.firestore()
     let docRef = database.collection("books").document(id)
     
+    let storage = Storage.storage()
+
     var book: Book? = nil
     
     docRef.getDocument { (document, error) in
         if let document = document, document.exists {
             let data = document.data()!
-            book = Book(name: data["name"] as! String, author: data["author"] as! String, timeToRead: data["time_to_read"] as! Int)
+            let storageRef = storage.reference(withPath: data["path_to_text"] as! String)
+            print("Loading image from path: \(data["path_to_text"] as! String)")
+            
+            storageRef.write(toFile: localURL) {url, error in
+                if let error = error{
+                    print("Failed to load text html: \(error)")
+                }else{
+                    book = Book(name: data["name"] as! String, author: data["author"] as! String, timeToRead: data["time_to_read"] as! Int, url: localURL)
+                }
+                if let comp = completion{
+                    comp(book)
+                }
+            }
         } else {
             print("Document does not exist")
-        }
-        if let comp = completion{
-            comp(book)
+            if let comp = completion{
+                comp(book)
+            }
         }
     }
 }

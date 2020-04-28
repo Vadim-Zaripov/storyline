@@ -11,10 +11,12 @@ import Foundation
 class Book{
     let name, author: String
     let timeToRead: Int
-    init(name: String, author: String, timeToRead: Int) {
+    let html_url: URL
+    init(name: String, author: String, timeToRead: Int, url: URL) {
         self.name = name
         self.author = author
         self.timeToRead = timeToRead
+        self.html_url = url
     }
 }
 

@@ -15,17 +15,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadBook(withIdentifier: "0") { (book) in
+        let textURL = Bundle.main.url(forResource: "text", withExtension: "html")!
+        
+        loadBook(withIdentifier: "0", localURL: textURL) { (book) in
             if let book = book{
                 print(book.name, book.author)
+                self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
+                self.view = self.scrollview!
+                self.scrollview!.textView.scrollView.delegate = self
             }
         }
-        
-        scrollview = ScrollWithToolbarView(frame: view.frame, image: UIImage(named: "bg")!, content_name: "text", header: ["Хамелеон", "А.П. Чехов", "Читать 5мин"])
-        
-        self.view = scrollview!
-        
-        scrollview!.textView.scrollView.delegate = self
     }
 
 
