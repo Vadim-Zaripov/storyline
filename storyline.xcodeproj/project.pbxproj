@@ -22,6 +22,8 @@
 		DA42133624583A59000CF6E9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133524583A59000CF6E9 /* Book.swift */; };
 		DA42133824584470000CF6E9 /* ScrollWithToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133724584470000CF6E9 /* ScrollWithToolbarView.swift */; };
 		DA42133A245857EB000CF6E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA421339245857EB000CF6E9 /* GoogleService-Info.plist */; };
+		DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133C2459D2D5000CF6E9 /* Quotes.swift */; };
+		DA42133F2459D5CA000CF6E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133E2459D5CA000CF6E9 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		DA42133524583A59000CF6E9 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		DA42133724584470000CF6E9 /* ScrollWithToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithToolbarView.swift; sourceTree = "<group>"; };
 		DA421339245857EB000CF6E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA42133C2459D2D5000CF6E9 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		DA42133E2459D5CA000CF6E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD45A41C42868BCA5B7684B4 /* Pods_storyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,7 @@
 		DA42130F24549F41000CF6E9 /* storyline */ = {
 			isa = PBXGroup;
 			children = (
+				DA42133B2459D281000CF6E9 /* Database */,
 				DA42132F24573540000CF6E9 /* fonts */,
 				DA42131024549F41000CF6E9 /* AppDelegate.swift */,
 				DA42131424549F41000CF6E9 /* ViewController.swift */,
@@ -109,8 +114,6 @@
 				DA42132A2455E1BD000CF6E9 /* constants.swift */,
 				DA421339245857EB000CF6E9 /* GoogleService-Info.plist */,
 				DA42132C2455E49B000CF6E9 /* text.html */,
-				DA421333245833AF000CF6E9 /* database.swift */,
-				DA42133524583A59000CF6E9 /* Book.swift */,
 			);
 			path = storyline;
 			sourceTree = "<group>";
@@ -121,6 +124,17 @@
 				DA42132E2455EF1B000CF6E9 /* OldStandard-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		DA42133B2459D281000CF6E9 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				DA421333245833AF000CF6E9 /* database.swift */,
+				DA42133524583A59000CF6E9 /* Book.swift */,
+				DA42133C2459D2D5000CF6E9 /* Quotes.swift */,
+				DA42133E2459D5CA000CF6E9 /* User.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,7 @@
 			files = (
 				DA42133824584470000CF6E9 /* ScrollWithToolbarView.swift in Sources */,
 				DA42133624583A59000CF6E9 /* Book.swift in Sources */,
+				DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */,
 				DA42131524549F41000CF6E9 /* ViewController.swift in Sources */,
 				DA42132924559E58000CF6E9 /* FontHelper.swift in Sources */,
 				DA42132524555794000CF6E9 /* ToolbarView.swift in Sources */,
@@ -267,6 +282,7 @@
 				DA42132724558CAA000CF6E9 /* extensions.swift in Sources */,
 				DA42132B2455E1BD000CF6E9 /* constants.swift in Sources */,
 				DA421334245833AF000CF6E9 /* database.swift in Sources */,
+				DA42133F2459D5CA000CF6E9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
