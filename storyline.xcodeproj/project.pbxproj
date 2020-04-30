@@ -130,8 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				DA421333245833AF000CF6E9 /* database.swift */,
-				DA42133524583A59000CF6E9 /* Book.swift */,
 				DA42133C2459D2D5000CF6E9 /* Quotes.swift */,
+				DA42133524583A59000CF6E9 /* Book.swift */,
 				DA42133E2459D5CA000CF6E9 /* User.swift */,
 			);
 			path = Database;

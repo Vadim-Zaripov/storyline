@@ -8,11 +8,11 @@
 
 import Foundation
 
-class Book{
+struct Book{
     let name, author: String
     let timeToRead: Int
-    let html_url: URL?
-    init(name: String, author: String, timeToRead: Int, url: URL?) {
+    let html_url: URL
+    init(name: String, author: String, timeToRead: Int, url: URL) {
         self.name = name
         self.author = author
         self.timeToRead = timeToRead

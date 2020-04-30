@@ -8,12 +8,14 @@
 
 import Foundation
 
-class Quote{
+struct Quote{
     let text: String
-    let book: Book
+    let book_name: String
+    let book_author: String
     
-    init(text: String, book: Book){
+    init(text: String, book_name: String, book_author: String){
         self.text = text
-        self.book = book
+        self.book_name = book_name
+        self.book_author = book_author
     }
 }

@@ -8,10 +8,26 @@
 
 import Foundation
 
-class User{
-    let id: String
+struct User{
+    let id, name: String
+    let interests: [Int]
+    let stats: Stats
     
-    init(id: String){
+    init(id: String, name: String, interests: [Int], stats: Stats){
         self.id = id
+        self.name = name
+        self.interests = interests
+        self.stats = stats
+    }
+}
+
+struct Stats{
+    let level, streak: Int
+    let lastDate: Date
+    
+    init(level: Int, streak: Int, lastDate: Date){
+        self.level = level
+        self.streak = streak
+        self.lastDate = lastDate
     }
 }

@@ -13,7 +13,6 @@ import FirebaseStorage
 var database: Firestore!
 
 func loadBook(withIdentifier id: String, localURL: URL, completion: ((Book?) -> Void)?){
-    database = Firestore.firestore()
     let docRef = database.collection("books").document(id)
     
     let storage = Storage.storage()
@@ -57,16 +56,35 @@ func loadQuotes(forUser usr: User, completion: (([Quote]?) -> Void)?){
         } else {
             quotes = []
             for document in querySnapshot!.documents {
-                let data = document.data()!
-                let name = data["text"] as! String
-                let bookRef = data["book"] as! DocumentReference
-                
+                let data = document.data()
+                quotes!.append(Quote(text: data["text"] as! String, book_name: data["book_name"] as! String, book_author: data["book_author"] as! String))
             }
         }
+        if let comp = completion{
+            comp(quotes)
+        }
     }
+}
+
+func loadUser(withId id: String, completion: ((User?) -> Void)?){
+    let docRef = database.collection("users").document(id)
     
-    if let comp = completion{
-        comp(quotes)
+    var user: User? = nil
+    
+    docRef.getDocument { (document, error) in
+        if let document = document, document.exists{
+            let data = document.data()!
+            let stats_data = data["stats"] as! [String: Int64]
+            let stats = Stats(level: Int(truncatingIfNeeded: stats_data["level"]!), streak: Int(truncatingIfNeeded: stats_data["streak"]!), lastDate: Date(milliseconds: stats_data["last_date"]!))
+            user = User(id: id, name: data["nickname"] as! String, interests: data["interests"] as! [Int], stats: stats)
+        }else{
+            print("Error loading user")
+            if let error = error { print(error) }
+        }
+        
+        if let comp = completion{
+            comp(user)
+        }
     }
     
 }
