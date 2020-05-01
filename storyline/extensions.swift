@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 extension Date {
     func toDatabaseFormat() -> Int64{
@@ -61,4 +62,21 @@ extension UIColor {
            blue: rgb & 0xFF
        )
    }
+}
+
+class CustomMenuWebView: WKWebView {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return false
+    }
+    
+    func getText(completion: @escaping ((String?) -> Void)){
+        evaluateJavaScript("window.getSelection().toString()") { (test, error) in
+            if let test = test as? String, error == nil {
+                completion(test)
+            }else{
+                completion(nil)
+            }
+        }
+    }
+
 }

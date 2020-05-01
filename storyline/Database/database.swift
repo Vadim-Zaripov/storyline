@@ -12,6 +12,14 @@ import FirebaseStorage
 
 var database: Firestore!
 
+struct Data{
+    var current_book: Book? = nil
+    var quotes: [Quote]? = nil
+    var user: User? = nil
+}
+
+var data = Data()
+
 func loadBook(withIdentifier id: String, localURL: URL, completion: ((Book?) -> Void)?){
     let docRef = database.collection("books").document(id)
     
@@ -87,4 +95,21 @@ func loadUser(withId id: String, completion: ((User?) -> Void)?){
         }
     }
     
+}
+
+func createQuote(forUser usr: User, withIndex id: String, quote: Quote, completion: @escaping ((Bool) -> Void)){
+    let collection = database.collection("users").document(usr.id).collection("quotes")
+    
+    collection.document(id).setData([
+        "text": quote.text,
+        "book_name": quote.book_name,
+        "book_author": quote.book_author
+    ]) { err in
+        if let err = err{
+            print("Error writing document: \(err)")
+            completion(false)
+        }else{
+            completion(true)
+        }
+    }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class ScrollWithToolbarView: UIView{
     
@@ -15,7 +16,7 @@ class ScrollWithToolbarView: UIView{
     var toolbarHeight = NSLayoutConstraint()
     var textHeight = NSLayoutConstraint()
     
-    var textView = UIWebView()
+    var textView = CustomMenuWebView()
     
     var minToolbarHeight: CGFloat = 0
     
@@ -45,10 +46,10 @@ class ScrollWithToolbarView: UIView{
         recDown.direction = .down
         toolbar.addGestureRecognizer(recDown)
         
-        textView = UIWebView()
+        textView = CustomMenuWebView()
         textView.translatesAutoresizingMaskIntoConstraints =  false
         textView.backgroundColor = .clear
-        textView.loadRequest(URLRequest(url: content_url))
+        textView.load(URLRequest(url: content_url))
         self.addSubview(textView)
         
         let textLeading = NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 10)

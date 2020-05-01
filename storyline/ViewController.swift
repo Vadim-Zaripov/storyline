@@ -17,22 +17,74 @@ class ViewController: UIViewController {
         
         let textURL = Bundle.main.url(forResource: "text", withExtension: "html")!
         
+        setMenu()
+        
         loadBook(withIdentifier: "0", localURL: textURL) { (book) in
-            if let book = book{
-                print(book.name, book.author)
-                self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
-                self.view = self.scrollview!
-                self.scrollview!.textView.scrollView.delegate = self
+            guard let book = book else {return}
+            print(book.name, book.author)
+            data.current_book = book
+            self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
+            self.view = self.scrollview!
+            self.scrollview!.textView.scrollView.delegate = self
+        }
+        
+        loadUser(withId: "test_id") { (usr) in
+            guard let usr = usr else {return}
+            data.user = usr
+            loadQuotes(forUser: usr) { (quotes) in
+                guard let quotes = quotes else {return}
+                data.quotes = quotes
             }
         }
     }
-
-
+    
+    func setMenu(){
+        let new = UIMenuItem(title: new_quote_text, action: #selector(newQuote))
+        let share = UIMenuItem(title: share_text, action: #selector(shareQuote))
+        let copy = UIMenuItem(title: copy_text, action: #selector(copyQuote))
+        
+        UIMenuController.shared.menuItems = [new, share, copy]
+    }
 }
 
 extension ViewController: UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollview!.updateToolbar()
+    }
+}
+
+extension ViewController{
+    @objc func newQuote(){
+        scrollview?.textView.getText(completion: { (txt) in
+            guard let text = txt, let book = data.current_book, let usr = data.user else {return}
+            if (data.quotes == nil)  {return}
+            let quote = Quote(text: text, book_name: book.name, book_author: book.author)
+            createQuote(forUser: usr, withIndex: String(data.quotes!.count), quote: quote) { (success) in
+                if(success){
+                    print("Successfully created new quote!")
+                }
+            }
+        })
+    }
+    
+    @objc func shareQuote(){
+        scrollview?.textView.getText(completion: { (txt) in
+            guard let text = txt, let book = data.current_book else {return}
+            let full_string_to_share = "\"" + text + "\"\n" + book.name + "\n" + book.author
+            print("Sharing quote: \(full_string_to_share)")
+            
+            let activityVC = UIActivityViewController(activityItems: [full_string_to_share], applicationActivities: nil)
+            self.present(activityVC, animated: true)
+        })
+    }
+    
+    @objc func copyQuote(){
+        scrollview?.textView.getText(completion: { (txt) in
+            guard let text = txt, let book = data.current_book else {return}
+            let full_string_to_copy = "\"" + text + "\"\n" + book.name + "\n" + book.author
+            print("Copying quote: \(full_string_to_copy)")
+            UIPasteboard.general.string = full_string_to_copy
+        })
     }
 }
