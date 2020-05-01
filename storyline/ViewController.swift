@@ -47,6 +47,7 @@ class ViewController: UIViewController {
     }
 }
 
+//Scroll view delegate
 extension ViewController: UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -54,6 +55,7 @@ extension ViewController: UIScrollViewDelegate{
     }
 }
 
+//Context menu methods
 extension ViewController{
     @objc func newQuote(){
         scrollview?.textView.getText(completion: { (txt) in

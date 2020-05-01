@@ -63,7 +63,7 @@ class ToolbarView: UIView{
             label.textAlignment = .center
             label.textColor = .white
             label.text = title
-            label.font = UIFont(name: fontName, size: CGFloat(FontHelper().getInterfaceFontSize(font: fontName, height: title_height)))
+            label.font = UIFont(name: fontName, size: FontHelper.getInterfaceFontSize(font: fontName, height: title_height))
             let d = [NSAttributedString.Key.font: label.font]
             label.adjustsFontSizeToFitWidth = true
             title_width = (title! as NSString).size(withAttributes: d as [NSAttributedString.Key : Any]).width
@@ -92,7 +92,7 @@ class ToolbarView: UIView{
             label.textColor = .white
             label.translatesAutoresizingMaskIntoConstraints = false
             label.textAlignment = .center
-            label.font = UIFont(name: fontName, size: CGFloat(FontHelper().getInterfaceFontSize(font: fontName, height: subtitle_height)))
+            label.font = UIFont(name: fontName, size: FontHelper.getInterfaceFontSize(font: fontName, height: subtitle_height))
             label.adjustsFontSizeToFitWidth = true
             return label
         }()
@@ -108,7 +108,7 @@ class ToolbarView: UIView{
             label.textColor = .white
             label.translatesAutoresizingMaskIntoConstraints = false
             label.textAlignment = .center
-            label.font = UIFont(name: fontName, size: CGFloat(FontHelper().getInterfaceFontSize(font: fontName, height: subtext_height)))
+            label.font = UIFont(name: fontName, size: FontHelper.getInterfaceFontSize(font: fontName, height: subtext_height))
             label.adjustsFontSizeToFitWidth = true
             return label
         }()

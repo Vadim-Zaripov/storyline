@@ -9,7 +9,7 @@
 import UIKit
 
 class FontHelper: NSObject{
-    func getFontSize(strings: [String], font: String, maxFontSize: Int, width: CGFloat, height: CGFloat) -> Int{
+    static func getFontSize(strings: [String], font: String, maxFontSize: Int, width: CGFloat, height: CGFloat) -> CGFloat{
         var l: Int = 1
         var r: Int = maxFontSize
         var m: Int
@@ -27,10 +27,10 @@ class FontHelper: NSObject{
                 r = m
             }
         }
-        return l
+        return CGFloat(l)
     }
     
-    func getFontSizeByHeight(text: String, font: String, maxFontSize: Int, height: CGFloat) -> Int{
+    static func getFontSizeByHeight(text: String, font: String, maxFontSize: Int, height: CGFloat) -> CGFloat{
         var l: Int = 1
         var r: Int = maxFontSize
         var m: Int
@@ -44,10 +44,10 @@ class FontHelper: NSObject{
                 r = m
             }
         }
-        return l
+        return CGFloat(l)
     }
     
-    func getInterfaceFontSize(font: String, height: CGFloat) -> Int{
+    static func getInterfaceFontSize(font: String, height: CGFloat) -> CGFloat{
         return self.getFontSizeByHeight(text: "ABC", font: font, maxFontSize: 120, height: height)
     }
 }

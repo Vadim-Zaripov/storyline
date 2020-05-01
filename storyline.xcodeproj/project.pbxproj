@@ -24,6 +24,8 @@
 		DA42133A245857EB000CF6E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA421339245857EB000CF6E9 /* GoogleService-Info.plist */; };
 		DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133C2459D2D5000CF6E9 /* Quotes.swift */; };
 		DA42133F2459D5CA000CF6E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133E2459D5CA000CF6E9 /* User.swift */; };
+		DAC9F335245C3F2D003459AE /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F334245C3F2D003459AE /* LogInView.swift */; };
+		DAC9F337245C48B7003459AE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F336245C48B7003459AE /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		DA421339245857EB000CF6E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA42133C2459D2D5000CF6E9 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		DA42133E2459D5CA000CF6E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DAC9F334245C3F2D003459AE /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		DAC9F336245C48B7003459AE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DD45A41C42868BCA5B7684B4 /* Pods_storyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,9 @@
 		DA42130F24549F41000CF6E9 /* storyline */ = {
 			isa = PBXGroup;
 			children = (
+				DAC9F338245C48C8003459AE /* AuthViews */,
+				DAC9F333245C3CFA003459AE /* Graphics */,
+				DAC9F332245C3CCC003459AE /* ScrollWithToolbarView */,
 				DA42133B2459D281000CF6E9 /* Database */,
 				DA42132F24573540000CF6E9 /* fonts */,
 				DA42131024549F41000CF6E9 /* AppDelegate.swift */,
@@ -107,12 +114,9 @@
 				DA42131924549F4E000CF6E9 /* Assets.xcassets */,
 				DA42131B24549F4E000CF6E9 /* LaunchScreen.storyboard */,
 				DA42131E24549F4E000CF6E9 /* Info.plist */,
-				DA42132424555794000CF6E9 /* ToolbarView.swift */,
-				DA42132624558CAA000CF6E9 /* extensions.swift */,
-				DA42132824559E58000CF6E9 /* FontHelper.swift */,
-				DA42133724584470000CF6E9 /* ScrollWithToolbarView.swift */,
-				DA42132A2455E1BD000CF6E9 /* constants.swift */,
 				DA421339245857EB000CF6E9 /* GoogleService-Info.plist */,
+				DA42132624558CAA000CF6E9 /* extensions.swift */,
+				DA42132A2455E1BD000CF6E9 /* constants.swift */,
 				DA42132C2455E49B000CF6E9 /* text.html */,
 			);
 			path = storyline;
@@ -135,6 +139,32 @@
 				DA42133E2459D5CA000CF6E9 /* User.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		DAC9F332245C3CCC003459AE /* ScrollWithToolbarView */ = {
+			isa = PBXGroup;
+			children = (
+				DA42132424555794000CF6E9 /* ToolbarView.swift */,
+				DA42133724584470000CF6E9 /* ScrollWithToolbarView.swift */,
+			);
+			path = ScrollWithToolbarView;
+			sourceTree = "<group>";
+		};
+		DAC9F333245C3CFA003459AE /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				DA42132824559E58000CF6E9 /* FontHelper.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		DAC9F338245C48C8003459AE /* AuthViews */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9F334245C3F2D003459AE /* LogInView.swift */,
+				DAC9F336245C48B7003459AE /* SignUpView.swift */,
+			);
+			path = AuthViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,9 +308,11 @@
 				DA42131524549F41000CF6E9 /* ViewController.swift in Sources */,
 				DA42132924559E58000CF6E9 /* FontHelper.swift in Sources */,
 				DA42132524555794000CF6E9 /* ToolbarView.swift in Sources */,
+				DAC9F335245C3F2D003459AE /* LogInView.swift in Sources */,
 				DA42131124549F41000CF6E9 /* AppDelegate.swift in Sources */,
 				DA42132724558CAA000CF6E9 /* extensions.swift in Sources */,
 				DA42132B2455E1BD000CF6E9 /* constants.swift in Sources */,
+				DAC9F337245C48B7003459AE /* SignUpView.swift in Sources */,
 				DA421334245833AF000CF6E9 /* database.swift in Sources */,
 				DA42133F2459D5CA000CF6E9 /* User.swift in Sources */,
 			);
