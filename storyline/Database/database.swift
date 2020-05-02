@@ -15,7 +15,8 @@ var database: Firestore!
 struct Data{
     var current_book: Book? = nil
     var quotes: [Quote]? = nil
-    var user: User? = nil
+    var user: DatabaseUser? = nil
+    var firebase_user: User? = nil
 }
 
 var data = Data()
@@ -52,7 +53,7 @@ func loadBook(withIdentifier id: String, localURL: URL, completion: ((Book?) -> 
     }
 }
 
-func loadQuotes(forUser usr: User, completion: (([Quote]?) -> Void)?){
+func loadQuotes(forUser usr: DatabaseUser, completion: (([Quote]?) -> Void)?){
     
     var quotes: [Quote]? = nil
     
@@ -74,17 +75,17 @@ func loadQuotes(forUser usr: User, completion: (([Quote]?) -> Void)?){
     }
 }
 
-func loadUser(withId id: String, completion: ((User?) -> Void)?){
+func loadUser(withId id: String, completion: ((DatabaseUser?) -> Void)?){
     let docRef = database.collection("users").document(id)
     
-    var user: User? = nil
+    var user: DatabaseUser? = nil
     
     docRef.getDocument { (document, error) in
         if let document = document, document.exists{
             let data = document.data()!
             let stats_data = data["stats"] as! [String: Int64]
             let stats = Stats(level: Int(truncatingIfNeeded: stats_data["level"]!), streak: Int(truncatingIfNeeded: stats_data["streak"]!), lastDate: Date(milliseconds: stats_data["last_date"]!))
-            user = User(id: id, name: data["nickname"] as! String, interests: data["interests"] as! [Int], stats: stats)
+            user = DatabaseUser(id: id, name: data["nickname"] as! String, interests: data["interests"] as! [Int], stats: stats)
         }else{
             print("Error loading user")
             if let error = error { print(error) }
@@ -97,7 +98,7 @@ func loadUser(withId id: String, completion: ((User?) -> Void)?){
     
 }
 
-func createQuote(forUser usr: User, withIndex id: String, quote: Quote, completion: @escaping ((Bool) -> Void)){
+func createQuote(forUser usr: DatabaseUser, withIndex id: String, quote: Quote, completion: @escaping ((Bool) -> Void)){
     let collection = database.collection("users").document(usr.id).collection("quotes")
     
     collection.document(id).setData([

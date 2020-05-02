@@ -29,7 +29,7 @@ class SignUpView: UIView{
             let label = UILabel()
             label.bounds = CGRect(x: 0, y: 0, width: 0.8*frame.width, height: frame.height / 18)
             label.center = CGPoint(x: 0.5*frame.width, y: frame.height / 5)
-            label.text = log_in_title
+            label.text = sign_up_title
             label.textAlignment = .center
             let f_size = FontHelper.getFontSize(strings: [log_in_title], font: fontName, maxFontSize: 120, width: label.bounds.width, height: label.bounds.height)
             label.font = UIFont(name: fontName, size: CGFloat(f_size))
@@ -39,7 +39,7 @@ class SignUpView: UIView{
         self.addSubview(title_label)
         
         //Text Fields
-        for i in 0..<2{
+        for i in 0..<3{
             let y = frame.height / 2 + (CGFloat(2*i) - 2.5)*standartHeight
             let edit_text: UITextField = {
                 let ed_text = UITextField()
@@ -52,8 +52,8 @@ class SignUpView: UIView{
                 ed_text.textAlignment = .left
                 
                 let bottomLine = CALayer()
-                bottomLine.frame = CGRect(origin: CGPoint(x: 0, y:ed_text.frame.height - 1), size: CGSize(width: ed_text.frame.width, height: 2))
-                bottomLine.backgroundColor = UIColor.white.cgColor
+                bottomLine.frame = CGRect(origin: CGPoint(x: 0, y:ed_text.frame.height - 1), size: CGSize(width: ed_text.frame.width, height: 1))
+                bottomLine.backgroundColor = UIColor.black.cgColor
                 ed_text.borderStyle = .none
                 ed_text.layer.addSublayer(bottomLine)
                 
@@ -63,7 +63,7 @@ class SignUpView: UIView{
             if(i == 0){edit_text.keyboardType = .emailAddress}
             edit_text.isSecureTextEntry = (i > 0)
             edit_text.tag = i + 1
-            edit_text.attributedPlaceholder = NSAttributedString(string: auth_placeholders[i], attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 1.0, alpha: 0.5)])
+            edit_text.attributedPlaceholder = NSAttributedString(string: auth_placeholders[i], attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 0.0, alpha: 0.5)])
             
             self.addSubview(edit_text)
             
@@ -85,8 +85,8 @@ class SignUpView: UIView{
             btn.setTitle("", for: .normal)
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.backgroundColor = UIColor.clear
-            btn.layer.borderWidth = 2
-            btn.layer.borderColor = UIColor.white.cgColor
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
             btn.center = CGPoint(x: (frame.width - 2*btn.bounds.width - pd) / 2 + btn.bounds.width / 2, y: 0.85*frame.height - btn.bounds.height / 2)
             btn.layer.cornerRadius = btn.bounds.height / 2
             btn.isUserInteractionEnabled = true
@@ -98,8 +98,10 @@ class SignUpView: UIView{
         submit_btn = finish_btn
         
         let submit_img: UIImageView = {
-            let img = UIImageView(image: UIImage(named: "next"))
-            img.bounds = CGRect(x: 0, y: 0, width: 0.35*finish_btn.bounds.width, height: 0.7*finish_btn.bounds.height)
+            let image = resizeImageToFit(image: UIImage(named: "arrow")!, targetSize: CGSize(width: finish_btn.bounds.width - 2*finish_btn.layer.cornerRadius, height: 0.7*finish_btn.bounds.height))
+            let img = UIImageView(image: image.withRenderingMode(.alwaysTemplate))
+            img.tintColor = .black
+            img.bounds = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
             img.center = finish_btn.center
             return img
         }()
@@ -111,7 +113,9 @@ class SignUpView: UIView{
             let btn = UIButton()
             btn.bounds = finish_btn.bounds
             btn.center = CGPoint(x: finish_btn.frame.maxX + pd + btn.bounds.width / 2, y: 0.85*frame.height - btn.bounds.height / 2)
-            btn.backgroundColor = UIColor.white
+            btn.backgroundColor = UIColor.clear
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
             btn.layer.cornerRadius = btn.bounds.height / 2
             
             return btn

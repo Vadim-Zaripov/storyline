@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User{
+struct DatabaseUser{
     let id, name: String
     let interests: [Int]
     let stats: Stats

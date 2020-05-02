@@ -41,7 +41,7 @@ class ToolbarView: UIView{
         self.clipsToBounds = true
         
         let imageView: UIImageView = {
-            let view = UIImageView(image: resizeImage(image: image, targetSize: CGSize(width: width, height: self.full_height)))
+            let view = UIImageView(image: resizeImageToFill(image: image, targetSize: CGSize(width: width, height: self.full_height)))
             view.contentMode = .bottom
             view.translatesAutoresizingMaskIntoConstraints = false
             return view

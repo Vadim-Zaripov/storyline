@@ -54,8 +54,8 @@ class LogInView: UIView{
                 ed_text.textAlignment = .left
                 
                 let bottomLine = CALayer()
-                bottomLine.frame = CGRect(origin: CGPoint(x: 0, y:ed_text.frame.height - 1), size: CGSize(width: ed_text.frame.width, height: 2))
-                bottomLine.backgroundColor = UIColor.white.cgColor
+                bottomLine.frame = CGRect(origin: CGPoint(x: 0, y:ed_text.frame.height - 1), size: CGSize(width: ed_text.frame.width, height: 1))
+                bottomLine.backgroundColor = UIColor.black.cgColor
                 ed_text.borderStyle = .none
                 ed_text.layer.addSublayer(bottomLine)
                 
@@ -65,7 +65,7 @@ class LogInView: UIView{
             if(i == 0){edit_text.keyboardType = .emailAddress}
             edit_text.isSecureTextEntry = (i == 1)
             edit_text.tag = i + 1
-            edit_text.attributedPlaceholder = NSAttributedString(string: auth_placeholders[i], attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 1.0, alpha: 0.5)])
+            edit_text.attributedPlaceholder = NSAttributedString(string: auth_placeholders[i], attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 0.0, alpha: 0.5)])
             
             self.addSubview(edit_text)
             
@@ -112,8 +112,8 @@ class LogInView: UIView{
             btn.setTitle("", for: .normal)
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.backgroundColor = UIColor.clear
-            btn.layer.borderWidth = 2
-            btn.layer.borderColor = UIColor.white.cgColor
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
             btn.center = CGPoint(x: (frame.width - 2*btn.bounds.width - pd) / 2 + btn.bounds.width / 2, y: median)
             btn.layer.cornerRadius = btn.bounds.height / 2
             btn.isUserInteractionEnabled = true
@@ -125,8 +125,10 @@ class LogInView: UIView{
         submit_btn = finish_btn
         
         let submit_img: UIImageView = {
-            let img = UIImageView(image: UIImage(named: "next"))
-            img.bounds = CGRect(x: 0, y: 0, width: 0.35*finish_btn.bounds.width, height: 0.7*finish_btn.bounds.height)
+            let image = resizeImageToFit(image: UIImage(named: "arrow")!, targetSize: CGSize(width: finish_btn.bounds.width - 2*finish_btn.layer.cornerRadius, height: 0.7*finish_btn.bounds.height))
+            let img = UIImageView(image: image.withRenderingMode(.alwaysTemplate))
+            img.tintColor = UIColor.black
+            img.bounds = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
             img.center = finish_btn.center
             return img
         }()
@@ -138,8 +140,10 @@ class LogInView: UIView{
             let btn = UIButton()
             btn.bounds = finish_btn.bounds
             btn.center = CGPoint(x: finish_btn.frame.maxX + pd + btn.bounds.width / 2, y: median)
-            btn.backgroundColor = UIColor.white
+            btn.backgroundColor = UIColor.clear
             btn.layer.cornerRadius = btn.bounds.height / 2
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
             
             return btn
         }()
