@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = LogInViewController()
+        let mainViewController = ChooseInterestsViewController()
         window!.rootViewController = mainViewController
         window!.makeKeyAndVisible()
         

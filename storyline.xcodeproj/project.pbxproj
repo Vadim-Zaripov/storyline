@@ -29,6 +29,8 @@
 		DAC9F33B245C567C003459AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F33A245C567C003459AE /* LoginViewController.swift */; };
 		DAC9F33D245C5698003459AE /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F33C245C5698003459AE /* SignupViewController.swift */; };
 		DAC9F33F245C575F003459AE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F33E245C575F003459AE /* LoadingView.swift */; };
+		DAC9F344245DA9CD003459AE /* ChooseInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F343245DA9CD003459AE /* ChooseInterestsViewController.swift */; };
+		DAC9F346245DAA51003459AE /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F345245DAA51003459AE /* InterestCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		DAC9F33A245C567C003459AE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DAC9F33C245C5698003459AE /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DAC9F33E245C575F003459AE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DAC9F343245DA9CD003459AE /* ChooseInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseInterestsViewController.swift; sourceTree = "<group>"; };
+		DAC9F345245DAA51003459AE /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
 		DD45A41C42868BCA5B7684B4 /* Pods_storyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,7 @@
 		DA42130F24549F41000CF6E9 /* storyline */ = {
 			isa = PBXGroup;
 			children = (
+				DAC9F340245DA8DE003459AE /* ChooseInterestsView */,
 				DAC9F339245C564A003459AE /* AuthViewControllers */,
 				DAC9F338245C48C8003459AE /* AuthViews */,
 				DAC9F333245C3CFA003459AE /* Graphics */,
@@ -182,6 +187,15 @@
 				DAC9F33C245C5698003459AE /* SignupViewController.swift */,
 			);
 			path = AuthViewControllers;
+			sourceTree = "<group>";
+		};
+		DAC9F340245DA8DE003459AE /* ChooseInterestsView */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9F343245DA9CD003459AE /* ChooseInterestsViewController.swift */,
+				DAC9F345245DAA51003459AE /* InterestCell.swift */,
+			);
+			path = ChooseInterestsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,12 +339,14 @@
 				DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */,
 				DA42131524549F41000CF6E9 /* ViewController.swift in Sources */,
 				DAC9F33F245C575F003459AE /* LoadingView.swift in Sources */,
+				DAC9F344245DA9CD003459AE /* ChooseInterestsViewController.swift in Sources */,
 				DA42132924559E58000CF6E9 /* FontHelper.swift in Sources */,
 				DA42132524555794000CF6E9 /* ToolbarView.swift in Sources */,
 				DAC9F335245C3F2D003459AE /* LogInView.swift in Sources */,
 				DA42131124549F41000CF6E9 /* AppDelegate.swift in Sources */,
 				DA42132724558CAA000CF6E9 /* extensions.swift in Sources */,
 				DA42132B2455E1BD000CF6E9 /* constants.swift in Sources */,
+				DAC9F346245DAA51003459AE /* InterestCell.swift in Sources */,
 				DAC9F337245C48B7003459AE /* SignUpView.swift in Sources */,
 				DAC9F33D245C5698003459AE /* SignupViewController.swift in Sources */,
 				DA421334245833AF000CF6E9 /* database.swift in Sources */,

@@ -30,3 +30,6 @@ let reset_password_describtion = "Мы отправили вам на почту
 let sign_out_question = "Выйти из аккаунта?"
 let sign_out_text = "Выйти"
 let sign_out_cancel = "Отмена"
+
+let choose_interests_title = "О чем хотите читать?"
+let save_interests = "Сохранить"
