@@ -10,7 +10,7 @@ import Foundation
 
 struct DatabaseUser{
     let id, name: String
-    let interests: [Int]
+    var interests: [Int]
     let stats: Stats
     
     init(id: String, name: String, interests: [Int], stats: Stats){

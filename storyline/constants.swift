@@ -31,5 +31,12 @@ let sign_out_question = "Выйти из аккаунта?"
 let sign_out_text = "Выйти"
 let sign_out_cancel = "Отмена"
 
+//Interest selection
 let choose_interests_title = "О чем хотите читать?"
 let save_interests = "Сохранить"
+
+let no_interest_alert = "Выберите интересы"
+let no_interest_description = "Выберите хотя бы 1 интерес, чтобы мы могли подбирвать вам рассказы"
+
+let error_loading_interest = "Ошибка сохранения интересов"
+let error_loading_desription = "Проверьте подключение к сети"

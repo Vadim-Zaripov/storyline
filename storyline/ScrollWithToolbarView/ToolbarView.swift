@@ -118,7 +118,7 @@ class ToolbarView: UIView{
         NSLayoutConstraint.activate([subtextLabelCenter, subtextLabelTop])
         
         let quotesBtn: UIImageView = {
-            let view = UIImageView(image: UIImage(named: "quotes"))
+            let view = UIImageView(image: UIImage(named: "profile"))
             view.translatesAutoresizingMaskIntoConstraints = false
             view.tag = 13
             view.contentMode = .scaleAspectFit

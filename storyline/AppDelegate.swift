@@ -22,12 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         database = Firestore.firestore()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let mainViewController = ChooseInterestsViewController()
-        window!.rootViewController = mainViewController
-        window!.makeKeyAndVisible()
+        if(Auth.auth().currentUser == nil){
+            print("Launching incognito")
+            runVC(ViewController())
+        }else{
+            data.firebase_user = Auth.auth().currentUser!
+            loadUser(withId: data.firebase_user!.uid) { (user) in
+                data.user = user
+                if let user = user{
+                    if(user.interests.count == 0){
+                        self.runVC(ChooseInterestsViewController())
+                    }else{
+                        self.runVC(ViewController())
+                    }
+                }
+            }
+        }
         
         return true
+    }
+    
+    func runVC(_ vc: UIViewController){
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = vc
+        window!.makeKeyAndVisible()
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {

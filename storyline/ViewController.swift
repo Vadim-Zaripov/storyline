@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -28,22 +29,12 @@ class ViewController: UIViewController {
             self.scrollview!.textView.scrollView.delegate = self
         }
         
-        loadUser(withId: "test_id") { (usr) in
-            guard let usr = usr else {return}
-            data.user = usr
-            loadQuotes(forUser: usr) { (quotes) in
+        if (data.user != nil){
+            loadQuotes(forUser: data.user!) { (quotes) in
                 guard let quotes = quotes else {return}
                 data.quotes = quotes
             }
         }
-    }
-    
-    func setMenu(){
-        let new = UIMenuItem(title: new_quote_text, action: #selector(newQuote))
-        let share = UIMenuItem(title: share_text, action: #selector(shareQuote))
-        let copy = UIMenuItem(title: copy_text, action: #selector(copyQuote))
-        
-        UIMenuController.shared.menuItems = [new, share, copy]
     }
 }
 
@@ -57,7 +48,19 @@ extension ViewController: UIScrollViewDelegate{
 
 //Context menu methods
 extension ViewController{
+    func setMenu(){
+        let new = UIMenuItem(title: new_quote_text, action: #selector(newQuote))
+        let share = UIMenuItem(title: share_text, action: #selector(shareQuote))
+        let copy = UIMenuItem(title: copy_text, action: #selector(copyQuote))
+        
+        UIMenuController.shared.menuItems = [new, share, copy]
+    }
+    
     @objc func newQuote(){
+        if(Auth.auth().currentUser == nil){
+            presentInFullScreen(LogInViewController(), animated: true, completion: nil)
+            return
+        }
         scrollview?.textView.getText(completion: { (txt) in
             guard let text = txt, let book = data.current_book, let usr = data.user else {return}
             if (data.quotes == nil)  {return}
@@ -71,6 +74,10 @@ extension ViewController{
     }
     
     @objc func shareQuote(){
+        if(Auth.auth().currentUser == nil){
+            presentInFullScreen(LogInViewController(), animated: true, completion: nil)
+            return
+        }
         scrollview?.textView.getText(completion: { (txt) in
             guard let text = txt, let book = data.current_book else {return}
             let full_string_to_share = "\"" + text + "\"\n" + book.name + "\n" + book.author
@@ -82,6 +89,10 @@ extension ViewController{
     }
     
     @objc func copyQuote(){
+        if(Auth.auth().currentUser == nil){
+            presentInFullScreen(LogInViewController(), animated: true, completion: nil)
+            return
+        }
         scrollview?.textView.getText(completion: { (txt) in
             guard let text = txt, let book = data.current_book else {return}
             let full_string_to_copy = "\"" + text + "\"\n" + book.name + "\n" + book.author

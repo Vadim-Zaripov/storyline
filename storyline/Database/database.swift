@@ -114,3 +114,44 @@ func createQuote(forUser usr: DatabaseUser, withIndex id: String, quote: Quote, 
         }
     }
 }
+
+func uploadInterests(forUser usr: DatabaseUser, toId id: String, completion: ((Bool) -> Void)?){
+    let userRef = database.collection("users").document(id)
+    
+    userRef.updateData([
+        "interests": usr.interests
+    ]) { error in
+        var success = true
+        if let error = error{
+            print("Error while uploading interests: \(error.localizedDescription)")
+            success = false
+        }
+        if let comp = completion{
+            comp(success)
+        }
+    }
+}
+
+func setupUser(withId id: String, completion: ((Bool) -> Void)?){
+    let userRef = database.collection("users").document(id)
+    
+    userRef.setData([
+        "nickname": "",
+        "interests": [],
+        "history": [],
+        "stats": [
+            "level": 100,
+            "streak": 0,
+            "last_date": Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: 1, to: Date())!).toDatabaseFormat()
+        ]
+    ]) { (error) in
+        var success = true
+        if let error = error{
+            print("Error creating user: \(error)")
+            success = false
+        }
+        if let comp = completion{
+            comp(success)
+        }
+    }
+}

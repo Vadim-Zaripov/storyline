@@ -81,13 +81,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate, GIDSignInDele
                 self.view.isUserInteractionEnabled = true
                 v.removeFromSuperview()
                 if error != nil{
-                    self.messageAlert(message: error_title, text_error: error_texts_sign_up[1])
+                    messageAlert(for: self, message: error_title, text_error: error_texts_sign_up[1])
                     return
                 }
                 data.firebase_user = Auth.auth().currentUser!
+                setupUser(withId: Auth.auth().currentUser!.uid, completion: nil)
                 Auth.auth().currentUser?.sendEmailVerification { (error) in
                     os_log("Error while sending verification email")
-                    self.messageAlert(message: error_title, text_error: error_texts_sign_up[2])
+                    messageAlert(for: self, message: error_title, text_error: error_texts_sign_up[2])
                     return
                 }
                 do{
@@ -100,21 +101,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate, GIDSignInDele
                     }))
                     self.presentInFullScreen(alert, animated: true, completion: nil)
                 }catch _ as NSError{
-                    self.messageAlert(message: error_title, text_error: error_texts_sign_up[1])
+                    messageAlert(for: self, message: error_title, text_error: error_texts_sign_up[1])
                     os_log("error")
                 }
                 
             }
         }else{
-            messageAlert(message: error_title, text_error: error_texts_sign_up[0])
+            messageAlert(for: self, message: error_title, text_error: error_texts_sign_up[0])
         }
-    }
-    
-    func messageAlert(message: String, text_error: String){
-        let alert = UIAlertController(title: message, message: text_error, preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: alert_ok, style: UIAlertAction.Style.default, handler: nil))
-        self.presentInFullScreen(alert, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

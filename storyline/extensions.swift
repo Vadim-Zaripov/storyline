@@ -115,3 +115,10 @@ extension UIViewController {
     present(viewController, animated: animated, completion: completion)
   }
 }
+
+func messageAlert(for vc: UIViewController, message: String, text_error: String){
+    let alert = UIAlertController(title: message, message: text_error, preferredStyle: UIAlertController.Style.alert)
+    
+    alert.addAction(UIAlertAction(title: alert_ok, style: UIAlertAction.Style.default, handler: nil))
+    vc.presentInFullScreen(alert, animated: true, completion: nil)
+}

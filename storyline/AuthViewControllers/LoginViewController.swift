@@ -87,36 +87,38 @@ class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInDeleg
                 let err_code = AuthErrorCode(rawValue: error._code)
                 switch err_code{
                 case .wrongPassword?:
-                    self.messageAlert(message: error_title, text_error: error_texts[0])
+                    messageAlert(for: self, message: error_title, text_error: error_texts[0])
                 case .invalidEmail?:
-                    self.messageAlert(message: error_title, text_error: error_texts[1])
+                    messageAlert(for: self, message: error_title, text_error: error_texts[1])
                 default:
-                    self.messageAlert(message: error_title, text_error: error_texts[2])
+                    messageAlert(for: self, message: error_title, text_error: error_texts[2])
                 }
             }else{
                 os_log("NO ERROR")
                 data.firebase_user = Auth.auth().currentUser!
                 if(data.firebase_user!.isEmailVerified){
-                    self.presentInFullScreen(ViewController(), animated: true, completion: nil)
+                    loadUser(withId: data.firebase_user!.uid) { (user) in
+                        data.user = user
+                        if let user = user{
+                            if(user.interests.count == 0){
+                                self.presentInFullScreen(ChooseInterestsViewController(), animated: true, completion: nil)
+                            }else{
+                                self.presentInFullScreen(ViewController(), animated: true, completion: nil)
+                            }
+                        }
+                    }
                 }else{
-                    self.messageAlert(message: error_title, text_error: error_texts[3])
+                    messageAlert(for: self, message: error_title, text_error: error_texts[3])
                 }
             }
         })
-    }
-    
-    func messageAlert(message: String, text_error: String){
-        let alert = UIAlertController(title: message, message: text_error, preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: alert_ok, style: UIAlertAction.Style.default, handler: nil))
-        self.presentInFullScreen(alert, animated: true, completion: nil)
     }
     
     @objc func Reset(_ sender: Any) {
         if(login_view.email_field.text != ""){
             Auth.auth().sendPasswordReset(withEmail: login_view.email_field.text!, completion: nil)
             login_view.forgot_btn.isEnabled = false
-            self.messageAlert(message: reset_password_title, text_error: reset_password_describtion)
+            messageAlert(for: self, message: reset_password_title, text_error: reset_password_describtion)
         }
     }
     
