@@ -30,6 +30,8 @@ class ToolbarView: UIView{
     
     var pd: CGFloat = 0
     
+    var button = UIButton()
+    
     init(width: CGFloat, small_height: CGFloat, full_height: CGFloat, title: String? = nil, subtitle: String? = nil, subtext: String? = nil, min_margin: CGFloat = 0, image: UIImage){
         super.init(frame: CGRect.zero)
         if(width == 0){return}
@@ -37,7 +39,7 @@ class ToolbarView: UIView{
         self.layer.cornerRadius = 20
         minimumTopMagin = min_margin + self.layer.cornerRadius
         self.small_height = small_height + self.layer.cornerRadius
-        self.full_height = full_height + self.layer.cornerRadius
+        self.full_height = full_height + 2*self.layer.cornerRadius
         self.clipsToBounds = true
         
         let imageView: UIImageView = {
@@ -117,13 +119,14 @@ class ToolbarView: UIView{
         let subtextLabelTop = NSLayoutConstraint(item: subtextLabel, attribute: .top, relatedBy: .equal, toItem: subtitleLabel, attribute: .bottom, multiplier: 1, constant: 0.3*title_height)
         NSLayoutConstraint.activate([subtextLabelCenter, subtextLabelTop])
         
-        let quotesBtn: UIImageView = {
-            let view = UIImageView(image: UIImage(named: "profile"))
+        let quotesBtn: UIButton = {
+            let view = UIButton()
+            view.setImage(UIImage(named: "profile"), for: .normal)
             view.translatesAutoresizingMaskIntoConstraints = false
             view.tag = 13
-            view.contentMode = .scaleAspectFit
             return view
         }()
+        button = quotesBtn
         self.addSubview(quotesBtn)
         let quotesWidth = NSLayoutConstraint(item: quotesBtn, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: quotes_btn_width)
         let quotesHeight = NSLayoutConstraint(item: quotesBtn, attribute: .height, relatedBy: .equal, toItem: quotesBtn, attribute: .width, multiplier: 1, constant: 0)

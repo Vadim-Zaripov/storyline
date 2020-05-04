@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textURL = Bundle.main.url(forResource: "text", withExtension: "html")!
+        let textURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("text.html")//Bundle.main.url(forResource: "text", withExtension: "html")!
         
         setMenu()
         
@@ -27,6 +27,7 @@ class ViewController: UIViewController {
             self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
             self.view = self.scrollview!
             self.scrollview!.textView.scrollView.delegate = self
+            self.scrollview?.toolbar.button.addTarget(self, action: #selector(self.toProfile(_:)), for: .touchUpInside)
         }
         
         if (data.user != nil){
@@ -35,6 +36,15 @@ class ViewController: UIViewController {
                 data.quotes = quotes
             }
         }
+    }
+    
+    @objc func toProfile(_ sender: Any){
+        if(Auth.auth().currentUser == nil){
+            presentInFullScreen(LogInViewController(), animated: true, completion: nil)
+            return
+        }
+        if(data.quotes == nil) {return}
+        presentInFullScreen(ProfileViewController(), animated: true, completion: nil)
     }
 }
 

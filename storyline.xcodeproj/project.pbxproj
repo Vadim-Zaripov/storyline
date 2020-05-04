@@ -31,6 +31,9 @@
 		DAC9F33F245C575F003459AE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F33E245C575F003459AE /* LoadingView.swift */; };
 		DAC9F344245DA9CD003459AE /* ChooseInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F343245DA9CD003459AE /* ChooseInterestsViewController.swift */; };
 		DAC9F346245DAA51003459AE /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F345245DAA51003459AE /* InterestCell.swift */; };
+		DAC9F349246006BB003459AE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F348246006BA003459AE /* ProfileView.swift */; };
+		DAC9F34B24600870003459AE /* QuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F34A24600870003459AE /* QuotesView.swift */; };
+		DAC9F34E24600DBF003459AE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F34D24600DBF003459AE /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		DAC9F33E245C575F003459AE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DAC9F343245DA9CD003459AE /* ChooseInterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseInterestsViewController.swift; sourceTree = "<group>"; };
 		DAC9F345245DAA51003459AE /* InterestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestCell.swift; sourceTree = "<group>"; };
+		DAC9F348246006BA003459AE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DAC9F34A24600870003459AE /* QuotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesView.swift; sourceTree = "<group>"; };
+		DAC9F34D24600DBF003459AE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DD45A41C42868BCA5B7684B4 /* Pods_storyline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storyline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,6 +120,7 @@
 		DA42130F24549F41000CF6E9 /* storyline */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC52C224609AD300FA8D88 /* ProfileView */,
 				DAC9F340245DA8DE003459AE /* ChooseInterestsView */,
 				DAC9F339245C564A003459AE /* AuthViewControllers */,
 				DAC9F338245C48C8003459AE /* AuthViews */,
@@ -123,6 +130,7 @@
 				DA42132F24573540000CF6E9 /* fonts */,
 				DA42131024549F41000CF6E9 /* AppDelegate.swift */,
 				DA42131424549F41000CF6E9 /* ViewController.swift */,
+				DAC9F34D24600DBF003459AE /* ProfileViewController.swift */,
 				DA42131924549F4E000CF6E9 /* Assets.xcassets */,
 				DA42131B24549F4E000CF6E9 /* LaunchScreen.storyboard */,
 				DA42131E24549F4E000CF6E9 /* Info.plist */,
@@ -151,6 +159,15 @@
 				DA42133E2459D5CA000CF6E9 /* User.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		DAAC52C224609AD300FA8D88 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9F348246006BA003459AE /* ProfileView.swift */,
+				DAC9F34A24600870003459AE /* QuotesView.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 		DAC9F332245C3CCC003459AE /* ScrollWithToolbarView */ = {
@@ -349,8 +366,11 @@
 				DAC9F346245DAA51003459AE /* InterestCell.swift in Sources */,
 				DAC9F337245C48B7003459AE /* SignUpView.swift in Sources */,
 				DAC9F33D245C5698003459AE /* SignupViewController.swift in Sources */,
+				DAC9F349246006BB003459AE /* ProfileView.swift in Sources */,
 				DA421334245833AF000CF6E9 /* database.swift in Sources */,
+				DAC9F34E24600DBF003459AE /* ProfileViewController.swift in Sources */,
 				DA42133F2459D5CA000CF6E9 /* User.swift in Sources */,
+				DAC9F34B24600870003459AE /* QuotesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M658992Q48;
+				DEVELOPMENT_TEAM = 36L89PHLKP;
 				INFOPLIST_FILE = storyline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,7 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M658992Q48;
+				DEVELOPMENT_TEAM = 36L89PHLKP;
 				INFOPLIST_FILE = storyline/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

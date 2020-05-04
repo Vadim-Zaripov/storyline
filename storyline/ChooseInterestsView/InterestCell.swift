@@ -20,7 +20,6 @@ class InterestCell: UICollectionViewCell {
         
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.4
-        contentView.layer.shadowOffset = .zero
         contentView.layer.shadowRadius = 3
         contentView.layer.shadowOffset = CGSize(width: 3, height: 3)
         

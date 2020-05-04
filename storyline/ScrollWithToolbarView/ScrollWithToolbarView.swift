@@ -35,7 +35,7 @@ class ScrollWithToolbarView: UIView{
         let toolbarLeading = NSLayoutConstraint(item: toolbar, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
         let toolbarTrailing = NSLayoutConstraint(item: toolbar, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
         let toolbarTop = NSLayoutConstraint(item: toolbar, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -toolbar.layer.cornerRadius)
-        toolbarHeight = NSLayoutConstraint(item: toolbar, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: self.bounds.height + toolbar.layer.cornerRadius)
+        toolbarHeight = NSLayoutConstraint(item: toolbar, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: self.toolbar.full_height)
         NSLayoutConstraint.activate([toolbarLeading, toolbarTrailing, toolbarTop, toolbarHeight])
         
         toolbar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeToolbarState(gesture:))))

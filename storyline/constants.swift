@@ -29,7 +29,6 @@ let reset_password_describtion = "Мы отправили вам на почту
 
 let sign_out_question = "Выйти из аккаунта?"
 let sign_out_text = "Выйти"
-let sign_out_cancel = "Отмена"
 
 //Interest selection
 let choose_interests_title = "О чем хотите читать?"
@@ -40,3 +39,6 @@ let no_interest_description = "Выберите хотя бы 1 интерес, 
 
 let error_loading_interest = "Ошибка сохранения интересов"
 let error_loading_desription = "Проверьте подключение к сети"
+
+let my_quotes_text = "Мои цитаты"
+let streak_text = ["Вы читаете уже ", " дней подряд"]
