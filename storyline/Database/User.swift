@@ -9,15 +9,24 @@
 import Foundation
 
 struct DatabaseUser{
-    let id, name: String
+    let id: String
+    var name: String
     var interests: [Int]
     let stats: Stats
+    let currentStory: CurrentStory
+    var history: [String]
     
-    init(id: String, name: String, interests: [Int], stats: Stats){
+    init(id: String, name: String, interests: [Int], stats: Stats, currentStory: CurrentStory, history: [String]){
         self.id = id
         self.name = name
         self.interests = interests
         self.stats = stats
+        self.currentStory = currentStory
+        self.history = history
+    }
+    
+    func bookFits(bookId: String, bookTags: [Int]) -> Bool{
+        return ((!history.contains(bookId)) && (interests.filter(bookTags.contains).count > 0))
     }
 }
 
@@ -29,5 +38,14 @@ struct Stats{
         self.level = level
         self.streak = streak
         self.lastDate = lastDate
+    }
+}
+
+struct CurrentStory{
+    let creationDate: Date
+    let uid: String
+    init(creationDate: Date, uid: String){
+        self.creationDate = creationDate
+        self.uid = uid
     }
 }

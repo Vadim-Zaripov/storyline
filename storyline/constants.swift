@@ -40,5 +40,12 @@ let no_interest_description = "Выберите хотя бы 1 интерес, 
 let error_loading_interest = "Ошибка сохранения интересов"
 let error_loading_desription = "Проверьте подключение к сети"
 
+let writeNameTitle = "Как вас зовут?"
+let namePlaceholeder = "Введите ваше имя"
+
+let no_name_chosen = "Введите имя"
+let no_name_description = "Пожалуйста введите ваше имя"
+
+//Profile view
 let my_quotes_text = "Мои цитаты"
 let streak_text = ["Вы читаете уже ", " дней подряд"]

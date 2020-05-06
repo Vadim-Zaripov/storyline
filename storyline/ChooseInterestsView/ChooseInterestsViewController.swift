@@ -16,6 +16,7 @@ class ChooseInterestsViewController: UIViewController, UICollectionViewDataSourc
     let screenSize: CGRect = UIScreen.main.bounds
     private let cellReuseIdentifier = "collectionCell"
     var items = ["1", "2", "3", "4"]
+    var nameField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,39 @@ class ChooseInterestsViewController: UIViewController, UICollectionViewDataSourc
         
         let top_margin = padding + UIApplication.shared.statusBarFrame.height
         let title_height = 0.07*view.bounds.height
+        
+        let nameTitleView: UILabel = {
+            let label = UILabel()
+            label.text = writeNameTitle
+            label.textAlignment = .center
+            label.font = UIFont(name: fontName, size: FontHelper.getFontSize(strings: [label.text!], font: fontName, maxFontSize: 120, width: 0.9*view.bounds.width, height: title_height))
+            label.frame = CGRect(x: 0, y: top_margin, width: view.bounds.width, height: title_height)
+            return label
+        }()
+        view.addSubview(nameTitleView)
+        
+        nameField = {
+            let view = UITextField()
+            view.frame = CGRect(x: padding, y: nameTitleView.frame.maxY, width: self.view.bounds.width - 2*padding, height: nameTitleView.bounds.height)
+            view.font = UIFont(name: fontName, size: FontHelper.getFontSize(strings: [namePlaceholeder], font: fontName, maxFontSize: 120, width: view.bounds.width, height: 0.7*view.bounds.height))
+            view.attributedPlaceholder = NSAttributedString(string: namePlaceholeder, attributes: [.font: view.font!])
+            
+            let bottomLine = CALayer()
+            bottomLine.frame = CGRect(origin: CGPoint(x: 0, y:view.frame.height - 1), size: CGSize(width: view.frame.width, height: 1))
+            bottomLine.backgroundColor = UIColor.black.cgColor
+            view.borderStyle = .none
+            view.layer.addSublayer(bottomLine)
+            
+            return view
+        }()
+        view.addSubview(nameField)
+        
         let titleView: UILabel = {
             let label = UILabel()
             label.text = choose_interests_title
             label.textAlignment = .center
             label.font = UIFont(name: fontName, size: FontHelper.getFontSize(strings: [label.text!], font: fontName, maxFontSize: 120, width: 0.9*view.bounds.width, height: title_height))
-            label.frame = CGRect(x: 0, y: top_margin, width: view.bounds.width, height: title_height)
+            label.frame = CGRect(x: 0, y: nameField.frame.maxY + padding, width: view.bounds.width, height: title_height)
             return label
         }()
         view.addSubview(titleView)
@@ -67,9 +95,12 @@ class ChooseInterestsViewController: UIViewController, UICollectionViewDataSourc
             let cell = view.viewWithTag(i) as! InterestCell
             if(cell.enabled) {data.user!.interests.append(i - 1)}
         }
-        if(data.user!.interests.count == 0){
+        if(nameField.text == nil){
+            messageAlert(for: self, message: no_name_chosen, text_error: no_name_description)
+        }else if(data.user!.interests.count == 0){
             messageAlert(for: self, message: no_interest_alert, text_error: no_interest_description)
         }else{
+            data.user!.name = nameField.text!
             uploadInterests(forUser: data.user!, toId: data.firebase_user!.uid) { (success) in
                 if success{
                     self.presentInFullScreen(ViewController(), animated: true, completion: nil)

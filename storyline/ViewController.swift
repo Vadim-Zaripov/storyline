@@ -20,17 +20,18 @@ class ViewController: UIViewController {
         
         setMenu()
         
-        loadBook(withIdentifier: "0", localURL: textURL) { (book) in
-            guard let book = book else {return}
-            print(book.name, book.author)
-            data.current_book = book
-            self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
-            self.view = self.scrollview!
-            self.scrollview!.textView.scrollView.delegate = self
-            self.scrollview?.toolbar.button.addTarget(self, action: #selector(self.toProfile(_:)), for: .touchUpInside)
-        }
-        
         if (data.user != nil){
+            loadBook(forUser: data.user!, localURL: textURL) { (book) in
+                guard let book = book else {return}
+                if(!data.user!.history.contains(book.uid)) {data.user!.history.append(book.uid)}
+                print(book.name, book.author)
+                data.current_book = book
+                self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url!, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
+                self.view = self.scrollview!
+                self.scrollview!.textView.scrollView.delegate = self
+                self.scrollview?.toolbar.button.addTarget(self, action: #selector(self.toProfile(_:)), for: .touchUpInside)
+            }
+            
             loadQuotes(forUser: data.user!) { (quotes) in
                 guard let quotes = quotes else {return}
                 data.quotes = quotes

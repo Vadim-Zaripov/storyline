@@ -11,6 +11,7 @@ import UIKit
 class ProfileView: UIView {
 
     var logout_btn: UIButton!
+    var back_btn: UIButton!
     
     init(frame: CGRect, quotes: [Quote], user: DatabaseUser){
         super.init(frame: frame)
@@ -31,12 +32,16 @@ class ProfileView: UIView {
             
             let title_height = 0.24*view.bounds.height
             
-            let title = UILabel(frame: CGRect(x: imageView.layer.cornerRadius, y: UIApplication.shared.statusBarFrame.height, width: frame.width - 3*imageView.layer.cornerRadius - title_height, height: title_height))
+            back_btn = UIButton(frame: CGRect(x: imageView.layer.cornerRadius, y: UIApplication.shared.statusBarFrame.height + 5, width: 0.9*title_height, height: title_height))
+            back_btn.setBackgroundImage(UIImage(named: "back"), for: .normal)
+            view.addSubview(back_btn)
+            
+            let title = UILabel(frame: CGRect(x: back_btn.frame.maxX, y: UIApplication.shared.statusBarFrame.height + 5, width: frame.width - 2*imageView.layer.cornerRadius - back_btn.frame.width - back_btn.frame.maxX, height: title_height))
             title.text = user.name
             title.font = UIFont(name: fontName, size: FontHelper.getFontSize(strings: [title.text!], font: fontName, maxFontSize: 120, width: title.bounds.width, height: title.bounds.height))
             view.addSubview(title)
             
-            let description = UILabel(frame: CGRect(x: imageView.layer.cornerRadius, y: title.frame.maxY, width: view.bounds.width - 2*imageView.layer.cornerRadius, height: 0.8*title.frame.height))
+            let description = UILabel(frame: CGRect(x: title.frame.minX, y: title.frame.maxY, width: view.bounds.width - title.frame.minX - imageView.layer.cornerRadius, height: 0.8*title.frame.height))
             description.text = streak_text[0] + String(user.stats.streak) + streak_text[1]
             description.font = UIFont(name: fontName, size: FontHelper.getFontSize(strings: [description.text!], font: fontName, maxFontSize: 120, width: description.frame.width, height: description.frame.height))
             view.addSubview(description)

@@ -22,7 +22,12 @@ class ProfileViewController: UIViewController {
         
         let content = ProfileView(frame: view.bounds, quotes: data.quotes ?? [], user: data.user!)
         content.logout_btn.addTarget(self, action: #selector(logOut(_:)), for: .touchUpInside)
+        content.back_btn.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         view.addSubview(content)
+    }
+    
+    @objc func back(_ sender: Any){
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func logOut(_ sender: Any){
@@ -33,7 +38,7 @@ class ProfileViewController: UIViewController {
             do {
                 try firebaseAuth.signOut()
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "signing_out", sender: self)
+                    self.presentInFullScreen(LogInViewController(), animated: true, completion: nil)
                 }
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
