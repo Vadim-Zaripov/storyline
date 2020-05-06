@@ -132,7 +132,9 @@ func loadUser(withId id: String, completion: ((DatabaseUser?) -> Void)?){
             let data = document.data()!
             
             let stats_data = data["stats"] as! [String: Any]
-            let stats = Stats(level: stats_data["level"] as! Int, streak: stats_data["streak"] as! Int, lastDate: Date(milliseconds: stats_data["last_date"] as! Int64))
+            let last_date = Date(milliseconds: stats_data["last_date"] as! Int64)
+            let streak = (Calendar.current.dateComponents([.day], from: last_date, to: Calendar.current.startOfDay(for: Date())).day! <= 1) ? stats_data["streak"] as! Int : 0
+            let stats = Stats(level: stats_data["level"] as! Int, streak: streak, lastDate: last_date)
             
             let currentData = data["currentStory"] as! [String: Any]
             let currentStory = CurrentStory(creationDate: Date(milliseconds: currentData["creationTime"] as! Int64), uid: currentData["storyUid"] as! String)
@@ -153,7 +155,7 @@ func loadUser(withId id: String, completion: ((DatabaseUser?) -> Void)?){
 func createQuote(forUser usr: DatabaseUser, withIndex id: String, quote: Quote, completion: @escaping ((Bool) -> Void)){
     let collection = database.collection("users").document(usr.id).collection("quotes")
     
-    collection.document(id).setData([
+    collection.addDocument(data: [
         "text": quote.text,
         "book_name": quote.book_name,
         "book_author": quote.book_author
@@ -211,5 +213,25 @@ func setupUser(withId id: String, completion: ((Bool) -> Void)?){
         if let comp = completion{
             comp(success)
         }
+    }
+}
+
+func updateStats(forUser user: DatabaseUser, completion: ((Stats?) -> Void)?){
+    print("updating stats")
+    let timeFromLastUpdate = Calendar.current.dateComponents([.day], from: user.stats.lastDate, to: Calendar.current.startOfDay(for: Date())).day!
+    var newstats = user.stats
+    newstats.lastDate = Calendar.current.startOfDay(for: Date())
+    if(timeFromLastUpdate >= 1){
+        newstats.streak += 1
+    }
+    database.collection("users").document(user.id).updateData([
+        "stats": [
+            "last_date": newstats.lastDate.toDatabaseFormat(),
+            "level": 100,
+            "streak": newstats.streak
+        ]
+    ])
+    if let comp = completion{
+        comp(newstats)
     }
 }

@@ -12,6 +12,7 @@ import Firebase
 class ViewController: UIViewController {
 
     var scrollview: ScrollWithToolbarView? = nil
+    var wasStreakUpdated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +52,17 @@ class ViewController: UIViewController {
 
 //Scroll view delegate
 extension ViewController: UIScrollViewDelegate{
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollview!.updateToolbar()
+        if(!wasStreakUpdated && scrollview?.toolbar.state ==  .small && scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+            guard let user = data.user else {return}
+            wasStreakUpdated = true
+            updateStats(forUser: user) { (stats) in
+                if let stats = stats{
+                    data.user!.stats = stats
+                }
+            }
+        }
     }
 }
 
@@ -76,6 +85,7 @@ extension ViewController{
             guard let text = txt, let book = data.current_book, let usr = data.user else {return}
             if (data.quotes == nil)  {return}
             let quote = Quote(text: text, book_name: book.name, book_author: book.author)
+            data.quotes?.append(quote)
             createQuote(forUser: usr, withIndex: String(data.quotes!.count), quote: quote) { (success) in
                 if(success){
                     print("Successfully created new quote!")

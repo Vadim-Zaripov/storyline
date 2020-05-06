@@ -90,6 +90,7 @@ class ScrollWithToolbarView: UIView{
         let y: CGFloat = textView.scrollView.contentOffset.y
         if(y <= 0){
             toolbar.alpha = 1
+            toolbarHeight.constant = toolbar.small_height
             return
         }
         if(y + self.bounds.height + textHeight.constant >= textView.scrollView.contentSize.height){

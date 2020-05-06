@@ -12,7 +12,7 @@ struct DatabaseUser{
     let id: String
     var name: String
     var interests: [Int]
-    let stats: Stats
+    var stats: Stats
     let currentStory: CurrentStory
     var history: [String]
     
@@ -31,8 +31,8 @@ struct DatabaseUser{
 }
 
 struct Stats{
-    let level, streak: Int
-    let lastDate: Date
+    var level, streak: Int
+    var lastDate: Date
     
     init(level: Int, streak: Int, lastDate: Date){
         self.level = level
