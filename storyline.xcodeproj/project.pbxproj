@@ -120,16 +120,16 @@
 		DA42130F24549F41000CF6E9 /* storyline */ = {
 			isa = PBXGroup;
 			children = (
+				DA42131024549F41000CF6E9 /* AppDelegate.swift */,
 				DAAC52C224609AD300FA8D88 /* ProfileView */,
 				DAC9F340245DA8DE003459AE /* ChooseInterestsView */,
-				DAC9F339245C564A003459AE /* AuthViewControllers */,
 				DAC9F338245C48C8003459AE /* AuthViews */,
-				DAC9F333245C3CFA003459AE /* Graphics */,
 				DAC9F332245C3CCC003459AE /* ScrollWithToolbarView */,
+				DAC9F333245C3CFA003459AE /* Graphics */,
 				DA42133B2459D281000CF6E9 /* Database */,
 				DA42132F24573540000CF6E9 /* fonts */,
-				DA42131024549F41000CF6E9 /* AppDelegate.swift */,
 				DA42131424549F41000CF6E9 /* ViewController.swift */,
+				DAC9F339245C564A003459AE /* AuthViewControllers */,
 				DAC9F34D24600DBF003459AE /* ProfileViewController.swift */,
 				DA42131924549F4E000CF6E9 /* Assets.xcassets */,
 				DA42131B24549F4E000CF6E9 /* LaunchScreen.storyboard */,
