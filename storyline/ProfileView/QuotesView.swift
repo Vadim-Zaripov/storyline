@@ -10,14 +10,17 @@ import UIKit
 
 class QuotesView: UIScrollView {
 
+    var quotes_views: [QuoteCardView] = []
+    var padding: CGFloat = 0
+    
     init(frame: CGRect, quotes: [Quote]){
         super.init(frame: frame)
         
-        let padding = 0.05*frame.width
+        padding = 0.05*frame.width
         let title_height = 0.07*frame.height
         
         let textSize: CGFloat = 24
-        let description_size: CGFloat = 18
+        let descriptionSize: CGFloat = 18
         
         let titleView: UILabel = {
             let view = UILabel()
@@ -29,43 +32,28 @@ class QuotesView: UIScrollView {
         self.addSubview(titleView)
         
         var y = titleView.frame.maxY + padding
+        quotes_views = []
         for quote in quotes{
-            let textView = UITextView()
-            let text = "\"" + quote.text + "\"\n" + quote.book_name + "\n" + quote.book_author
-            
-            let myAttributedString = NSMutableAttributedString(string: text)
-            myAttributedString.addAttribute(
-                .font, value: UIFont(name: fontName, size: textSize)!,
-                range: NSRange(location:0,length:quote.text.count + 2))
-
-            myAttributedString.addAttributes([.font: UIFont(name: fontName, size: description_size)!],
-                                             range: NSRange(location: quote.text.count + 2,length: text.count - quote.text.count - 2))
-
-            textView.attributedText = myAttributedString
-            
-            textView.frame = CGRect(x: padding, y: y, width: frame.width - 2*padding, height: 0)
-            
-            let fixedWidth = textView.frame.size.width
-            let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-            textView.isScrollEnabled = false
-            
-            textView.layer.cornerRadius = padding / 2
-            
-            textView.isEditable = false
-            textView.isSelectable = false
-            
-            textView.layer.masksToBounds = false
-            textView.layer.shadowColor = UIColor.black.cgColor
-            textView.layer.shadowOpacity = 0.4
-            textView.layer.shadowRadius = 3
-            textView.layer.shadowOffset = CGSize(width: 3, height: 3)
-            
-            y += padding + textView.frame.height
-            self.addSubview(textView)
+            let quoteView = QuoteCardView(frame: CGRect(x: padding, y: y, width: frame.width - 2*padding, height: 0), quote: quote, quoteSize: textSize, descriptionSize: descriptionSize)
+            y += padding + quoteView.frame.height
+            self.addSubview(quoteView)
+            quotes_views.append(quoteView)
         }
         
         self.contentSize = CGSize(width: frame.width, height: y)
+    }
+    
+    func removeQuote(quote_view: QuoteCardView){
+        var to_move_up: CGFloat = 0
+        for quote_v in quotes_views{
+            if(quote_v === quote_view){
+                to_move_up = quote_v.bounds.height + padding
+                quote_v.removeFromSuperview()
+            }else{
+                quote_v.center = CGPoint(x: quote_v.center.x, y: quote_v.center.y - to_move_up)
+            }
+        }
+        quotes_views.remove(at: quotes_views.firstIndex(of: quote_view)!)
     }
     
     required init?(coder: NSCoder) {

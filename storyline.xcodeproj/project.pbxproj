@@ -24,6 +24,7 @@
 		DA42133A245857EB000CF6E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA421339245857EB000CF6E9 /* GoogleService-Info.plist */; };
 		DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133C2459D2D5000CF6E9 /* Quotes.swift */; };
 		DA42133F2459D5CA000CF6E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42133E2459D5CA000CF6E9 /* User.swift */; };
+		DA6319BF2463FA590009E59C /* QuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6319BE2463FA580009E59C /* QuoteCardView.swift */; };
 		DAC9F335245C3F2D003459AE /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F334245C3F2D003459AE /* LogInView.swift */; };
 		DAC9F337245C48B7003459AE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F336245C48B7003459AE /* SignUpView.swift */; };
 		DAC9F33B245C567C003459AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9F33A245C567C003459AE /* LoginViewController.swift */; };
@@ -57,6 +58,7 @@
 		DA421339245857EB000CF6E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA42133C2459D2D5000CF6E9 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		DA42133E2459D5CA000CF6E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DA6319BE2463FA580009E59C /* QuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardView.swift; sourceTree = "<group>"; };
 		DAC9F334245C3F2D003459AE /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		DAC9F336245C48B7003459AE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DAC9F33A245C567C003459AE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				DAC9F348246006BA003459AE /* ProfileView.swift */,
 				DAC9F34A24600870003459AE /* QuotesView.swift */,
+				DA6319BE2463FA580009E59C /* QuoteCardView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				DAC9F33B245C567C003459AE /* LoginViewController.swift in Sources */,
 				DA42133824584470000CF6E9 /* ScrollWithToolbarView.swift in Sources */,
 				DA42133624583A59000CF6E9 /* Book.swift in Sources */,
+				DA6319BF2463FA590009E59C /* QuoteCardView.swift in Sources */,
 				DA42133D2459D2D5000CF6E9 /* Quotes.swift in Sources */,
 				DA42131524549F41000CF6E9 /* ViewController.swift in Sources */,
 				DAC9F33F245C575F003459AE /* LoadingView.swift in Sources */,

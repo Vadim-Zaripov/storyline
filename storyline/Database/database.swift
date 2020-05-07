@@ -113,7 +113,7 @@ func loadQuotes(forUser usr: DatabaseUser, completion: (([Quote]?) -> Void)?){
             quotes = []
             for document in querySnapshot!.documents {
                 let data = document.data()
-                quotes!.append(Quote(text: data["text"] as! String, book_name: data["book_name"] as! String, book_author: data["book_author"] as! String))
+                quotes!.append(Quote(uid: document.documentID, text: data["text"] as! String, book_name: data["book_name"] as! String, book_author: data["book_author"] as! String))
             }
         }
         if let comp = completion{
@@ -152,19 +152,33 @@ func loadUser(withId id: String, completion: ((DatabaseUser?) -> Void)?){
     
 }
 
-func createQuote(forUser usr: DatabaseUser, withIndex id: String, quote: Quote, completion: @escaping ((Bool) -> Void)){
+func createQuote(forUser usr: DatabaseUser, quote: Quote, completion: @escaping ((String?) -> Void)){
     let collection = database.collection("users").document(usr.id).collection("quotes")
     
-    collection.addDocument(data: [
+    var ref: DocumentReference? = nil
+    ref = collection.addDocument(data: [
         "text": quote.text,
         "book_name": quote.book_name,
         "book_author": quote.book_author
     ]) { err in
         if let err = err{
             print("Error writing document: \(err)")
-            completion(false)
+            completion(nil)
         }else{
-            completion(true)
+            completion(ref!.documentID)
+        }
+    }
+}
+
+func deleteQuote(forUser usr: DatabaseUser, quote: Quote, completion: ((Bool) -> Void)?){
+    database.collection("users").document(usr.id).collection("quotes").document(quote.uid).delete() {err in
+        var success = true
+        if let err = err{
+            print("Error deleting quote: \(err.localizedDescription)")
+            success = false
+        }
+        if let comp = completion{
+            comp(success)
         }
     }
 }

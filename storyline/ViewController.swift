@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         let textURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("text.html")//Bundle.main.url(forResource: "text", withExtension: "html")!
         
         setMenu()
-        
         if (data.user != nil){
             loadBook(forUser: data.user!, localURL: textURL) { (book) in
                 guard let book = book else {return}
@@ -84,11 +83,12 @@ extension ViewController{
         scrollview?.textView.getText(completion: { (txt) in
             guard let text = txt, let book = data.current_book, let usr = data.user else {return}
             if (data.quotes == nil)  {return}
-            let quote = Quote(text: text, book_name: book.name, book_author: book.author)
-            data.quotes?.append(quote)
-            createQuote(forUser: usr, withIndex: String(data.quotes!.count), quote: quote) { (success) in
-                if(success){
+            var quote = Quote(uid: "", text: text, book_name: book.name, book_author: book.author)
+            createQuote(forUser: usr, quote: quote) { (id) in
+                if let id = id{
                     print("Successfully created new quote!")
+                    quote.uid = id
+                    data.quotes?.append(quote)
                 }
             }
         })

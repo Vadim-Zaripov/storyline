@@ -12,6 +12,7 @@ class ProfileView: UIView {
 
     var logout_btn: UIButton!
     var back_btn: UIButton!
+    var quotes_view: QuotesView!
     
     init(frame: CGRect, quotes: [Quote], user: DatabaseUser){
         super.init(frame: frame)
@@ -54,8 +55,8 @@ class ProfileView: UIView {
         }()
         self.addSubview(toolbar)
         
-        let v = QuotesView(frame: CGRect(x: 0, y: toolbar.frame.maxY + 0.03*frame.height, width: frame.width, height: frame.height - toolbar.frame.maxY), quotes: quotes)
-        self.addSubview(v)
+        quotes_view = QuotesView(frame: CGRect(x: 0, y: toolbar.frame.maxY + 0.03*frame.height, width: frame.width, height: frame.height - toolbar.frame.maxY), quotes: quotes)
+        self.addSubview(quotes_view)
     }
     
     required init?(coder: NSCoder) {
