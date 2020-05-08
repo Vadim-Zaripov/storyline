@@ -55,8 +55,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate, GIDSignInDele
             v.removeFromSuperview()
             if let e = error{
                 print("Failed to log in Firebase using Google: ", e)
+                return
             }
-            self.presentInFullScreen(ViewController(), animated: true, completion: nil)
+            setupUser(withId: Auth.auth().currentUser!.uid) {(success) in
+                if success{
+                    self.presentInFullScreen(ChooseInterestsViewController(), animated: true, completion: nil)
+                }
+            }
             print("Successfully logged in Firebase", result!.user.uid)
         })
         
