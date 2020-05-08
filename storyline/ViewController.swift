@@ -36,6 +36,16 @@ class ViewController: UIViewController {
                 guard let quotes = quotes else {return}
                 data.quotes = quotes
             }
+        }else{
+            loadBook(withIdentifier: "0", localURL: textURL) { (book) in
+                guard let book = book else {return}
+                print(book.name, book.author)
+                data.current_book = book
+                self.scrollview = ScrollWithToolbarView(frame: self.view.frame, image: UIImage(named: "bg")!, content_url: book.html_url!, header: [book.name, book.author, "Читать \(book.timeToRead)мин"])
+                self.view = self.scrollview!
+                self.scrollview!.textView.scrollView.delegate = self
+                self.scrollview?.toolbar.button.addTarget(self, action: #selector(self.toProfile(_:)), for: .touchUpInside)
+            }
         }
     }
     

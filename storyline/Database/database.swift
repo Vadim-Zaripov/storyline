@@ -216,8 +216,7 @@ func setupUser(withId id: String, completion: ((Bool) -> Void)?){
         "currentStory": [
             "creationTime": Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -1, to: Date())!).toDatabaseFormat(),
             "storyUid": ""
-        ],
-        "history": []
+        ]
     ]) { (error) in
         var success = true
         if let error = error{

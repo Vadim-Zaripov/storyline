@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         database = Firestore.firestore()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
+        
         if(Auth.auth().currentUser == nil){
             print("Launching incognito")
             runVC(ViewController())
